@@ -33,7 +33,7 @@ import (
 // The process is expected to call Take() before every iteration, which
 // may block to throttle the goroutine.
 type Limiter interface {
-	// Take should block to make sure that the RPS is met.
+	// Take should block to make sure that the RPS (Remote Programming Software) is met.
 	Take() time.Time
 }
 
