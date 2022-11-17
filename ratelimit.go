@@ -29,6 +29,11 @@ import (
 // Note: This file is inspired by:
 // https://github.com/prashantv/go-bench/blob/master/ratelimit
 
+const (
+	defaultSlack     = 10
+	defaultPerPeriod = time.Second
+)
+
 // Limiter is used to rate-limit some process, possibly across goroutines.
 // The process is expected to call Take() before every iteration, which
 // may block to throttle the goroutine.
@@ -61,8 +66,8 @@ func New(rate int, opts ...Option) Limiter {
 func buildConfig(opts []Option) config {
 	c := config{
 		clock: clock.New(),
-		slack: 10,
-		per:   time.Second,
+		slack: defaultSlack,
+		per:   defaultPerPeriod,
 	}
 
 	for _, opt := range opts {
